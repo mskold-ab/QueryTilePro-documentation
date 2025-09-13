@@ -1,13 +1,71 @@
 ---
 layout: page
 ---
-<div style=" display: grid ;">
-<div style="grid-column:1 ;background-color: beige;">
-HEJ {{page.title}}
-{{content}}
 
+<link rel="stylesheet"
+    href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.0/css/fabric.min.css">
+<style>
+  .pageinfo {
+      background: ghostwhite;
+      font-size: small;
+      text-align: center;
+      height: 25px;
+      color: gray;
+      padding:6px;
+    }
+    .feedbackFooter{
+      background-color: ghostwhite;
+      padding:6px;
+      text-align: center;
+    }
+    .infoBar {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .timetoRead{
+        float: left;
+    }
+
+    .improve {
+      text-align: right;
+      font-size: small;
+      color: gray !important;
+      float:right;
+    }
+</style>
+
+
+<script>
+  function SendHelpfullTelemetry(isHelpfull){
+    appInsights.trackEvent({name:isHelpfull?'Helpful':'Not-Helpful'});
+  }
+</script>
+
+<div style=" display: grid ;">
+    <div style="grid-column: 1;min-width: 180px;">
+          <img src="/img/QueryTilePRO-logo.png" width="50%" /> 
+    <br/>
+        <ul>
+    {% for p in site.posts %}
+
+     <li>   <a href="{{ p.url | relative_url  }}">{{ p.title }}</a></li>
+    {% endfor %}
+</ul>    
 </div>
-<div style="grid-column:2">
+<div style="grid-column:2 ;background-color: beige;min-width: 180px;">
+ <h1>{{ page.title }}</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">{{ page.author }}</span> on <span class="bold">{{ page.date | date: "%B %-d, %Y" }}</span></p>
+            </div>
+            <hr />
+            <p>{{ content }}</p>
+<div class="feedbackFooter"> 
+      <span style="margin-left: 50%;margin-right: 50%;white-space:nowrap;">Was this page helpfull <a onclick="alert('Thnx');SendHelpfullTelemetry(true);" href="#"
+>Yes</a>/ <a onclick="alert('Thnx Sorry to learn that');SendHelpfullTelemetry(false);" href="#">No</a></span>
+     </div>
+</div>
+<div style="grid-column:3">
     {% toc %}
 </div>
 </div>

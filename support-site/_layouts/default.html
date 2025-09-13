@@ -1,15 +1,17 @@
-Default {{site.title}}
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    {% include head.html %}
+  </head>
+  <body >
 
-<div style="width:200px;background-color: gainsboro;">
+      {% include header.html %}
 
-    {% for posts in site.post %}
+      <div class="container-fluid container-middle">
+          {{ content }}
+      </div>
 
-<a href="{[post.url}}" >{{post.title}}</a>
+      {% include footer.html %}
 
-{%endfor%}
-
-
-</div>
-<div style="background-color: brown; width:800px;">
-{{content}}
-</div>
+  </body>
+</html>
