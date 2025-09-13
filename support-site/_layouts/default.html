@@ -1,0 +1,15 @@
+Default {{site.title}}
+
+<div style="width:200px;background-color: gainsboro;">
+
+    {% for posts in site.post %}
+
+<a href="{[post.url}}" >{{post.title}}</a>
+
+{%endfor%}
+
+
+</div>
+<div style="background-color: brown; width:800px;">
+{{content}}
+</div>
